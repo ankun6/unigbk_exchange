@@ -2,6 +2,12 @@
 #include "util.h"
 #include <string.h>
 
+/*
+
+ 在线unicode和gbk转换：http://www.mytju.com/classCode/tools/encode_gb2312.asp
+
+ */
+
 void test_gbkstr2unistr(void)
 {
 	const uint8_t* gbk  = "我A你";				// GBK字符串
