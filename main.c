@@ -32,7 +32,7 @@ void test_gbk2uni(void)
 	gbk2unicode(uni, gbk);
 	printf("------ gbk convert unicode: \r\n");
 	for(i = 0; i != 4; i++)
-		printf("       gbk:0x%04X    unicode:0x%04X\r\n", gbk[i], uni[i]);
+	printf("       gbk:0x%04X    unicode:0x%04X\r\n", gbk[i], uni[i]);
 }
 
 void test_uni2gbk(void)
