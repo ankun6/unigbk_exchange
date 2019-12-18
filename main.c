@@ -41,7 +41,6 @@ void test_gbk2uni(void)
 
 void test_uni2gbk(void)
 {
-	int i = 0;
 	uint16_t uni[4] = {0x6211, 0x7231, 0x4F60, 0x0041};	// ÎÒ°®ÄãAµÄunicodeÂë
 	uint8_t gbk[10];
 	unicode2gbk(gbk, uni, 4);
@@ -59,8 +58,8 @@ void test_hex2str(void)
 
 int main()
 {
-	test_gbkstr2unistr();		// ²âÊÔgbk×Ö·û´®×ªunicode×Ö·û´®
-	test_unistr2gbkstr();		// ²âÊÔunicode×Ö·û´®×ªgbk×Ö·û´®
+	test_gbkstr2unistr();		// ²âÊÔgbk×Ö·û´®×ªunicodeÊ®Áù½øÖÆ×Ö·û´®
+	test_unistr2gbkstr();		// ²âÊÔunicodeÊ®Áù½øÖÆ×Ö·û´®×ªgbk×Ö·û´®
 	test_gbk2uni();				// ²âÊÔgbkÂë×ªunicodeÂë
 	test_uni2gbk();				// ²âÊÔunicodeÂë×ªgbkÂë
 	test_hex2str();				// ²âÊÔÊ®Áù½øÖÆ×ª×Ö·û´®
