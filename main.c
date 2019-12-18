@@ -24,7 +24,7 @@ void test_unistr2gbkstr(void)
 	printf("------ unicode string convert to gbk string: %s\r\n", gbk);
 }
 
-void test_gbk2unicode(void)
+void test_gbk2uni(void)
 {
 	int i = 0;
 	uint16_t gbk[4] = {0xCED2, 0xB0AE, 0xC4E3, 0x41};		// ÎÒ°®ÄãAµÄGBKÂë
@@ -35,7 +35,7 @@ void test_gbk2unicode(void)
 	printf("       gbk:0x%04X    unicode:0x%04X\r\n", gbk[i], uni[i]);
 }
 
-void test__uni2gbk(void)
+void test_uni2gbk(void)
 {
 	int i = 0;
 	uint16_t uni[4] = {0x6211, 0x7231, 0x4F60, 0x0041};	// ÎÒ°®ÄãAµÄunicodeÂë
@@ -50,7 +50,7 @@ int main()
 {
 	test_gbkstr2unistr();		// ²âÊÔgbk×Ö·û´®×ªunicode×Ö·û´®
 	test_unistr2gbkstr();		// ²âÊÔunicode×Ö·û´®×ªgbk×Ö·û´®
-	test_gbk2unicode();			// ²âÊÔgbkÂë×ªunicodeÂë
-	test__uni2gbk();			// ²âÊÔunicodeÂë×ªgbkÂë
+	test_gbk2uni();				// ²âÊÔgbkÂë×ªunicodeÂë
+	test_uni2gbk();				// ²âÊÔunicodeÂë×ªgbkÂë
 	return 0;
 }
