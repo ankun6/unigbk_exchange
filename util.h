@@ -10,7 +10,7 @@
 #include <stdint.h>
 #include <stdbool.h>
 
-#define swap16(x) ((x&0XFF)<<8|(x&0XFF00)>>8)		//é«˜ä½å­—èŠ‚äº¤æ¢å®å®šä¹‰
+#define swap16(x) ((x&0XFF)<<8|(x&0XFF00)>>8)		//¸ßµÍ×Ö½Ú½»»»ºê¶¨Òå
 
 uint8_t hex2chr(uint8_t hex);
 uint8_t chr2hex(uint8_t chr);

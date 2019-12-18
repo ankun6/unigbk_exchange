@@ -10,7 +10,7 @@
 
 void test_gbkstr2unistr(void)
 {
-	const uint8_t* gbk  = "ÎÒAÄã";				// GBK×Ö·û´®
+	const uint8_t* gbk  = (const uint8_t*)"ÎÒAÄã";				// GBK×Ö·û´®
 	uint8_t uni[10];
 	gbkstr2unistr(uni, gbk);
 	printf("------ gbk string convert to unicode string: %s\r\n", uni);
@@ -18,7 +18,7 @@ void test_gbkstr2unistr(void)
 
 void test_unistr2gbkstr(void)
 {
-	const uint8_t* uni = "621100414F60";		// unicodeÊ®Áù½øÖÆ×Ö·û´®
+	const uint8_t* uni = (const uint8_t*)"621100414F60";		// unicodeÊ®Áù½øÖÆ×Ö·û´®
 	uint8_t gbk[10];
 	unistr2gbkstr(gbk, uni);
 	printf("------ unicode string convert to gbk string: %s\r\n", gbk);
@@ -32,7 +32,7 @@ void test_gbk2uni(void)
 	gbk2unicode(uni, gbk);
 	printf("------ gbk convert unicode: \r\n");
 	for(i = 0; i != 4; i++)
-	printf("       gbk:0x%04X    unicode:0x%04X\r\n", gbk[i], uni[i]);
+		printf("       gbk:0x%04X    unicode:0x%04X\r\n", gbk[i], uni[i]);
 }
 
 void test_uni2gbk(void)
@@ -50,9 +50,9 @@ void test_hex2str(void)
 {
 	uint8_t* hexstr[8];
 	hex2str(hexstr, 0xAABB0033, true);
-	printf("------ hex convert to string: \"%s\"\r\n", hexstr);
+	printf("------ hex convert to string: \"%s\"\r\n", (char *)hexstr);
 	hex2str(hexstr, 0x0AB2, true);
-	printf("------ hex convert to string: \"%s\"\r\n", hexstr);
+	printf("------ hex convert to string: \"%s\"\r\n", (char *)hexstr);
 }
 
 int main()
