@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "util.h"
 #include <string.h>
-
+#include <stdlib.h>
 /*
 
  ÔÚÏßunicodeºÍgbk×ª»»£ºhttp://www.mytju.com/classCode/tools/encode_gb2312.asp
@@ -12,7 +12,7 @@ void test_gbkstr2unistr(void)
 {
 	const uint8_t* gbk  = "ÎÒAÄã";				// GBK×Ö·û´®
 	uint8_t uni[10];
-	unigbk_str_exchange(uni, gbk, 0);
+	gbkstr2unistr(uni, gbk);
 	printf("------ gbk string convert to unicode string: %s\r\n", uni);
 }
 
@@ -20,7 +20,7 @@ void test_unistr2gbkstr(void)
 {
 	const uint8_t* uni = "621100414F60";		// unicodeÊ®Áù½øÖÆ×Ö·û´®
 	uint8_t gbk[10];
-	unigbk_str_exchange(gbk, uni, 1);
+	unistr2gbkstr(gbk, uni);
 	printf("------ unicode string convert to gbk string: %s\r\n", gbk);
 }
 
@@ -46,11 +46,21 @@ void test_uni2gbk(void)
 		printf("       unicode:0x%04X    gbk:0x%04X\r\n", uni[i], gbk[i]);
 }
 
+void test_hex2str(void)
+{
+	uint8_t* hexstr[8];
+	hex2str(hexstr, 0xAABB0033, true);
+	printf("------ hex convert to string: \"%s\"\r\n", hexstr);
+	hex2str(hexstr, 0x0AB2, true);
+	printf("------ hex convert to string: \"%s\"\r\n", hexstr);
+}
+
 int main()
 {
 	test_gbkstr2unistr();		// ²âÊÔgbk×Ö·û´®×ªunicode×Ö·û´®
 	test_unistr2gbkstr();		// ²âÊÔunicode×Ö·û´®×ªgbk×Ö·û´®
 	test_gbk2uni();				// ²âÊÔgbkÂë×ªunicodeÂë
 	test_uni2gbk();				// ²âÊÔunicodeÂë×ªgbkÂë
+	test_hex2str();				// ²âÊÔÊ®Áù½øÖÆ×ª×Ö·û´®
 	return 0;
 }

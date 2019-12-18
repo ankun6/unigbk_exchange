@@ -4,6 +4,8 @@
 
 #include "util.h"
 
+static uint16_t ff_convert (uint16_t src, uint32_t	dir);
+
 /**
  * 十六进制字符转十六进制数，例：'A' -> 0xA
  * @param  chr 要转换的十六进制字符
@@ -135,46 +137,77 @@ void gbkstr2unistr(void* dst, const void* src)
 }
 
 /**
- * unicode十六进制字符串和gbk字符串相互转换
- * @param dst
- * @param src
- * @param mode =0：gbk转unicode    =1：unicode转gbk
+ * 小写字母转为大写
+ * @param c 待转的字母
+ * @return 转换后的大写字母
  */
-typedef void (*convert)(void* dst, const void* src);
-void unigbk_str_exchange(void* dst, const void* src, int mode)
+char lower2upper(char c)
 {
-	convert cov = mode == 0 ? gbkstr2unistr : unistr2gbkstr;
-	cov(dst, src);
+	if(c <= 'z' && c >= 'a')
+		return c - 32;
+	return c;
 }
 
 /**
- * uint类型转十六进制字符串，例：0x1BA23 -> "1BA23"
- * @param dst 存放转换后的字符串
- * @param val 要转换的值
+ * 大写字母转小写字母
+ * @param c 待转换的小写字母
+ * @return 转换后的大写字母
  */
-void uint2hexstr(const void* dst, unsigned int val)
+char upper2lower(char c)
 {
-	int len = 0;
-	unsigned char* d = (unsigned char *)dst;
-	unsigned char* s = (unsigned char *)&val;
+	if(c >= 'A' && c <= 'Z')
+		return c + 32;
+	return c;
+}
 
-	if (val <= 0xFF)
-		len = 1;
-	else if (val > 0xFF && val <= 0xFFFF)
-		len = 2;
-	else if (val > 0xFFFF && val < 0xFFFFFF)
-		len = 3;
-	else if (val > 0xFFFFFF)
-		len = 4;
-
-	while (len--)
+/**
+ * 十六进制面值转字符串，例：0x1A2B->"1A2B"或"1a2b"
+ * @param dst 存放转换后的字符串
+ * @param hex 待转换的十六进制数
+ * @param isUpper 是否为大写字符
+ */
+void hex2str(const void* dst, int hex, bool isUpper)
+{
+	char* d = (char *)dst;
+	itoa(hex, d, 16);
+	if(isUpper)
 	{
-		unsigned char h = hex2chr((s[len] & 0xF0) >> 4);
-		unsigned char l = hex2chr((s[len] & 0x0F));
-		*d++ = h;
-		*d++ = l;
+		while (*d != 0)
+		{
+			*d = lower2upper(*d);		// 转大写字母
+			d++;
+		}
 	}
-	*d = 0;		// 添加结束符
+}
+
+/**
+ * 转十进制字符串，例：123->"123"
+ * @param dst 存放转换后的字符串
+ * @param num 要转换的数
+ */
+void int2str(const void* dst, int num)
+{
+	itoa(num, (char *)dst, 16);
+}
+
+/**
+ * 转二进制字符串，例：0x0A->"1010"
+ * @param dst 存放转换后的二进制字符串
+ * @param bin 待转换的值
+ */
+void bin2str(const void* dst, int bin)
+{
+	itoa(bin, (char *)dst, 2);
+}
+
+/**
+ * 转换为八进制字符串
+ * @param dst 存放转换后的字符串
+ * @param oct 待转换的值
+ */
+void oct2str(const void* dst, int oct)
+{
+	itoa(oct, (char *)dst, 8);
 }
 
 /**
