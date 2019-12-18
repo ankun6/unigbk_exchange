@@ -33,20 +33,30 @@ uint8_t hex2chr(uint8_t hex)
 
 /**
  * unicode码转gbk码
- * @param gbk		存放gbk码
+ * @param gbk		存放gbk字符串
  * @param unicode unicode码
  * @param num 		unicode码的数量
  */
-void unicode2gbk(uint16_t*  gbk, const uint16_t* unicode, uint32_t num)
+void unicode2gbk(void*  gbk, const uint16_t* unicode, uint32_t num)
 {
+	uint8_t* d = (uint8_t *)gbk;
 	while (num--)
 	{
-		*gbk++ = ff_convert(*unicode++, 0);
+		if(*unicode < 0x81)					// ascii
+		{
+			*d++ = *unicode;
+		} else								// unicode
+		{
+			*(uint16_t *)d = swap16(ff_convert(*unicode, 0));
+			d += 2;
+		}
+		unicode++;
 	}
+	*d = 0;			// 添加结束符
 }
 
 /**
- * gbk码转unicode码
+ * gbk字符串转unicode码
  * @param unicode 存放unicode码
  * @param gbk 		gbk码
  */
@@ -63,8 +73,8 @@ void gbk2unicode(uint16_t*  unicode, const void* gbk)
 			temp = *src++;
 		} else							// gbk code
 		{
-			buf[0] = *src++;
 			buf[1] = *src++;
+			buf[0] = *src++;
 			temp = ff_convert(*(uint16_t*)buf, 1);		// convert to unicode
 		}
 		*unicode++ = temp;

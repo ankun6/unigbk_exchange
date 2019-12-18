@@ -18,10 +18,10 @@ uint8_t hex2chr(uint8_t hex);
 // 字符转十六进制数，例：'A'->0xA
 uint8_t chr2hex(uint8_t chr);
 
-// unicode码转gbk码
-void unicode2gbk(uint16_t*  gbk, const uint16_t* unicode, uint32_t num);
+// unicode码转gbk字符串
+void unicode2gbk(void*  gbk, const uint16_t* unicode, uint32_t num);
 
-// gbk码转unicode码
+// gbk字符串转unicode码
 void gbk2unicode(uint16_t*  unicode, const void* gbk);
 
 // unicode十六进制字符串转gbk字符串

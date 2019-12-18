@@ -27,23 +27,25 @@ void test_unistr2gbkstr(void)
 void test_gbk2uni(void)
 {
 	int i = 0;
-	uint16_t gbk[4] = {0xCED2, 0xB0AE, 0xC4E3, 0x41};		// ÎÒ°®ÄãAµÄGBKÂë
+	const uint8_t* gbk = (const uint8_t*)"ÎÒ°®ÄãA";		// GBK×Ö·û´®
 	uint16_t uni[4];
 	gbk2unicode(uni, gbk);
 	printf("------ gbk convert unicode: \r\n");
 	for(i = 0; i != 4; i++)
-	printf("       gbk:0x%04X    unicode:0x%04X\r\n", gbk[i], uni[i]);
+	{
+		uint16_t gbkcode = *(((uint16_t *)gbk) + i);
+		gbkcode = gbkcode >= 0x81 ? swap16(gbkcode) : gbkcode;
+		printf("   gbk:0x%04X    unicode:0x%04X\r\n", gbkcode, uni[i]);
+	}
 }
 
 void test_uni2gbk(void)
 {
 	int i = 0;
 	uint16_t uni[4] = {0x6211, 0x7231, 0x4F60, 0x0041};	// ÎÒ°®ÄãAµÄunicodeÂë
-	uint16_t gbk[4];
+	uint8_t gbk[10];
 	unicode2gbk(gbk, uni, 4);
-	printf("------ unicode convert gbk: \r\n");
-	for(i = 0; i != 4; i++)
-		printf("       unicode:0x%04X    gbk:0x%04X\r\n", uni[i], gbk[i]);
+	printf("------ unicode convert gbk: [0x%X 0x%X 0x%X 0x%X] -> %s\r\n", uni[0], uni[1], uni[2], uni[3], gbk);
 }
 
 void test_hex2str(void)
