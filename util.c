@@ -176,7 +176,7 @@ char upper2lower(char c)
  * @param hex 待转换的十六进制数
  * @param isUpper 是否为大写字符
  */
-void hex2str(const void* dst, int hex, bool isUpper)
+void hex2str(void* dst, int hex, bool isUpper)
 {
 	char* d = (char *)dst;
 	itoa(hex, d, 16);
@@ -195,7 +195,7 @@ void hex2str(const void* dst, int hex, bool isUpper)
  * @param dst 存放转换后的字符串
  * @param num 要转换的数
  */
-void int2str(const void* dst, int num)
+void int2str(void* dst, int num)
 {
 	itoa(num, (char *)dst, 16);
 }
@@ -205,7 +205,7 @@ void int2str(const void* dst, int num)
  * @param dst 存放转换后的二进制字符串
  * @param bin 待转换的值
  */
-void bin2str(const void* dst, int bin)
+void bin2str(void* dst, int bin)
 {
 	itoa(bin, (char *)dst, 2);
 }
@@ -215,7 +215,7 @@ void bin2str(const void* dst, int bin)
  * @param dst 存放转换后的字符串
  * @param oct 待转换的值
  */
-void oct2str(const void* dst, int oct)
+void oct2str(void* dst, int oct)
 {
 	itoa(oct, (char *)dst, 8);
 }

@@ -37,15 +37,15 @@ char lower2upper(char c);
 char upper2lower(char c);
 
 // 十六进制数转字符串，例：0x12BC->"12BC"
-void hex2str(const void* dst, int hex, bool isUpper);
+void hex2str(void* dst, int hex, bool isUpper);
 
 // 十进制数转字符串，例：132->"132"
-void int2str(const void* dst, int num);
+void int2str(void* dst, int num);
 
 // 整型数转二进制字符串，例：0xA->"1010"
-void bin2str(const void* dst, int bin);
+void bin2str(void* dst, int bin);
 
 // 整型数转八进制字符串，例：0x8->"11"
-void oct2str(const void* dst, int oct);
+void oct2str(void* dst, int oct);
 
 #endif //UNIGBK_EXCHANGE_UTIL_H
