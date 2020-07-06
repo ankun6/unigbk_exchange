@@ -7,9 +7,9 @@
 static uint16_t ff_convert (uint16_t src, uint32_t	dir);
 
 /**
- * Ê®Áù½øÖÆ×Ö·û×ªÊ®Áù½øÖÆÊı£¬Àı£º'A' -> 0xA
- * @param  chr Òª×ª»»µÄÊ®Áù½øÖÆ×Ö·û
- * @return     ×ª»»ºóµÄÖµ
+ * åå…­è¿›åˆ¶å­—ç¬¦è½¬åå…­è¿›åˆ¶æ•°ï¼Œä¾‹ï¼š'A' -> 0xA
+ * @param  chr è¦è½¬æ¢çš„åå…­è¿›åˆ¶å­—ç¬¦
+ * @return     è½¬æ¢åçš„å€¼
  */
 uint8_t chr2hex(uint8_t chr)
 {
@@ -20,9 +20,9 @@ uint8_t chr2hex(uint8_t chr)
 }
 
 /**
- * Ê®Áù½øÖÆÊı×ªÎª×Ö·û´®ĞÎÊ½£¬Àı£º0x0A->'A'
- * @param  hex Òª×ª»»µÄÊı£¬·¶Î§0~F
- * @return     ×ª»»ºóµÄÖµ
+ * åå…­è¿›åˆ¶æ•°è½¬ä¸ºå­—ç¬¦ä¸²å½¢å¼ï¼Œä¾‹ï¼š0x0A->'A'
+ * @param  hex è¦è½¬æ¢çš„æ•°ï¼ŒèŒƒå›´0~F
+ * @return     è½¬æ¢åçš„å€¼
  */
 uint8_t hex2chr(uint8_t hex)
 {
@@ -32,10 +32,10 @@ uint8_t hex2chr(uint8_t hex)
 }
 
 /**
- * unicodeÂë×ªgbkÂë
- * @param gbk		´æ·Ågbk×Ö·û´®
- * @param unicode unicodeÂë
- * @param num 		unicodeÂëµÄÊıÁ¿
+ * unicodeç è½¬gbkç 
+ * @param gbk		å­˜æ”¾gbkå­—ç¬¦ä¸²
+ * @param unicode unicodeç 
+ * @param num 		unicodeç çš„æ•°é‡
  */
 void unicode2gbk(void*  gbk, const uint16_t* unicode, uint32_t num)
 {
@@ -52,13 +52,13 @@ void unicode2gbk(void*  gbk, const uint16_t* unicode, uint32_t num)
 		}
 		unicode++;
 	}
-	*d = 0;			// Ìí¼Ó½áÊø·û
+	*d = 0;			// æ·»åŠ ç»“æŸç¬¦
 }
 
 /**
- * gbk×Ö·û´®×ªunicodeÂë
- * @param unicode ´æ·ÅunicodeÂë
- * @param gbk 		gbkÂë
+ * gbkå­—ç¬¦ä¸²è½¬unicodeç 
+ * @param unicode å­˜æ”¾unicodeç 
+ * @param gbk 		gbkç 
  */
 void gbk2unicode(uint16_t*  unicode, const void* gbk)
 {
@@ -82,9 +82,9 @@ void gbk2unicode(uint16_t*  unicode, const void* gbk)
 }
 
 /**
- * unicodeÊ®Áù½øÖÆ×Ö·û´®×ªgbk×Ö·û´®
- * @param dst ´æ·Ågbk×Ö·û´®
- * @param src unicodeÊ®Áù½øÖÆ×Ö·û´®
+ * unicodeåå…­è¿›åˆ¶å­—ç¬¦ä¸²è½¬gbkå­—ç¬¦ä¸²
+ * @param dst å­˜æ”¾gbkå­—ç¬¦ä¸²
+ * @param src unicodeåå…­è¿›åˆ¶å­—ç¬¦ä¸²
  */
 void unistr2gbkstr(void* dst, const void* src)
 {
@@ -111,13 +111,13 @@ void unistr2gbkstr(void* dst, const void* src)
 			d += 2;
 		}
 	}
-	*d = 0;		// Ìí¼Ó½áÊø·û
+	*d = 0;		// æ·»åŠ ç»“æŸç¬¦
 }
 
 /**
- * gbk×Ö·û´®×ªunicodeÊ®Áù½øÖÆ×Ö·û´®
- * @param dst ´æ·ÅunicodeÊ®Áù½øÖÆ×Ö·û´®
- * @param src gbk×Ö·û´®
+ * gbkå­—ç¬¦ä¸²è½¬unicodeåå…­è¿›åˆ¶å­—ç¬¦ä¸²
+ * @param dst å­˜æ”¾unicodeåå…­è¿›åˆ¶å­—ç¬¦ä¸²
+ * @param src gbkå­—ç¬¦ä¸²
  */
 void gbkstr2unistr(void* dst, const void* src)
 {
@@ -143,13 +143,13 @@ void gbkstr2unistr(void* dst, const void* src)
 		*d++ = hex2chr((temp >> 4) & 0X0F);
 		*d++ = hex2chr(temp & 0X0F);
 	}
-	*d = 0;		// Ìí¼Ó½áÊø·û
+	*d = 0;		// æ·»åŠ ç»“æŸç¬¦
 }
 
 /**
- * Ğ¡Ğ´×ÖÄ¸×ªÎª´óĞ´
- * @param c ´ı×ªµÄ×ÖÄ¸
- * @return ×ª»»ºóµÄ´óĞ´×ÖÄ¸
+ * å°å†™å­—æ¯è½¬ä¸ºå¤§å†™
+ * @param c å¾…è½¬çš„å­—æ¯
+ * @return è½¬æ¢åçš„å¤§å†™å­—æ¯
  */
 char lower2upper(char c)
 {
@@ -159,9 +159,9 @@ char lower2upper(char c)
 }
 
 /**
- * ´óĞ´×ÖÄ¸×ªĞ¡Ğ´×ÖÄ¸
- * @param c ´ı×ª»»µÄĞ¡Ğ´×ÖÄ¸
- * @return ×ª»»ºóµÄ´óĞ´×ÖÄ¸
+ * å¤§å†™å­—æ¯è½¬å°å†™å­—æ¯
+ * @param c å¾…è½¬æ¢çš„å°å†™å­—æ¯
+ * @return è½¬æ¢åçš„å¤§å†™å­—æ¯
  */
 char upper2lower(char c)
 {
@@ -171,10 +171,10 @@ char upper2lower(char c)
 }
 
 /**
- * Ê®Áù½øÖÆÃæÖµ×ª×Ö·û´®£¬Àı£º0x1A2B->"1A2B"»ò"1a2b"
- * @param dst ´æ·Å×ª»»ºóµÄ×Ö·û´®
- * @param hex ´ı×ª»»µÄÊ®Áù½øÖÆÊı
- * @param isUpper ÊÇ·ñÎª´óĞ´×Ö·û
+ * åå…­è¿›åˆ¶é¢å€¼è½¬å­—ç¬¦ä¸²ï¼Œä¾‹ï¼š0x1A2B->"1A2B"æˆ–"1a2b"
+ * @param dst å­˜æ”¾è½¬æ¢åçš„å­—ç¬¦ä¸²
+ * @param hex å¾…è½¬æ¢çš„åå…­è¿›åˆ¶æ•°
+ * @param isUpper æ˜¯å¦ä¸ºå¤§å†™å­—ç¬¦
  */
 void hex2str(void* dst, int hex, bool isUpper)
 {
@@ -184,16 +184,35 @@ void hex2str(void* dst, int hex, bool isUpper)
 	{
 		while (*d != 0)
 		{
-			*d = lower2upper(*d);		// ×ª´óĞ´×ÖÄ¸
+			*d = lower2upper(*d);		// è½¬å¤§å†™å­—æ¯
 			d++;
 		}
 	}
 }
 
 /**
- * ×ªÊ®½øÖÆ×Ö·û´®£¬Àı£º123->"123"
- * @param dst ´æ·Å×ª»»ºóµÄ×Ö·û´®
- * @param num Òª×ª»»µÄÊı
+ * åå…­è¿›åˆ¶å­—ç¬¦ä¸²è½¬æ•°å€¼ï¼Œä¾‹ï¼š"AABBCC" -> 0XAA,0XBB,0XCC
+ * @param str å¾…è½¬æ¢çš„åå…­è¿›åˆ¶å­—ç¬¦ä¸²
+ * @param len å­—ç¬¦ä¸²é•¿åº¦
+ * @param hex å­˜æ”¾è½¬æ¢åçš„å­—ç¬¦ä¸²å€¼
+ */
+void str2hex(const void* str, int len, uint8_t* hex)
+{
+	const uint8_t* s = (const uint8_t *)str;
+	uint8_t* d = (uint8_t *)hex;
+	while (len > 0)
+	{
+		*d = (chr2hex(s[0]) << 4) | chr2hex(s[1]);
+		d += 1;
+		s += 2;
+		len -= 2;
+	}
+}
+
+/**
+ * è½¬åè¿›åˆ¶å­—ç¬¦ä¸²ï¼Œä¾‹ï¼š123->"123"
+ * @param dst å­˜æ”¾è½¬æ¢åçš„å­—ç¬¦ä¸²
+ * @param num è¦è½¬æ¢çš„æ•°
  */
 void int2str(void* dst, int num)
 {
@@ -201,9 +220,9 @@ void int2str(void* dst, int num)
 }
 
 /**
- * ×ª¶ş½øÖÆ×Ö·û´®£¬Àı£º0x0A->"1010"
- * @param dst ´æ·Å×ª»»ºóµÄ¶ş½øÖÆ×Ö·û´®
- * @param bin ´ı×ª»»µÄÖµ
+ * è½¬äºŒè¿›åˆ¶å­—ç¬¦ä¸²ï¼Œä¾‹ï¼š0x0A->"1010"
+ * @param dst å­˜æ”¾è½¬æ¢åçš„äºŒè¿›åˆ¶å­—ç¬¦ä¸²
+ * @param bin å¾…è½¬æ¢çš„å€¼
  */
 void bin2str(void* dst, int bin)
 {
@@ -211,9 +230,9 @@ void bin2str(void* dst, int bin)
 }
 
 /**
- * ×ª»»Îª°Ë½øÖÆ×Ö·û´®
- * @param dst ´æ·Å×ª»»ºóµÄ×Ö·û´®
- * @param oct ´ı×ª»»µÄÖµ
+ * è½¬æ¢ä¸ºå…«è¿›åˆ¶å­—ç¬¦ä¸²
+ * @param dst å­˜æ”¾è½¬æ¢åçš„å­—ç¬¦ä¸²
+ * @param oct å¾…è½¬æ¢çš„å€¼
  */
 void oct2str(void* dst, int oct)
 {
@@ -221,10 +240,10 @@ void oct2str(void* dst, int oct)
 }
 
 /**
- * UNICODEºÍOEMCP»¥×ªº¯Êı
- * @param  src ´ı×ª»»µÄÖµ
- * @param  dir 0£ºunicode×ªoemcp  1£ºoemcp×ªunicode
- * @return     ×ª»»ºóµÄÖµ
+ * UNICODEå’ŒOEMCPäº’è½¬å‡½æ•°
+ * @param  src å¾…è½¬æ¢çš„å€¼
+ * @param  dir 0ï¼šunicodeè½¬oemcp  1ï¼šoemcpè½¬unicode
+ * @return     è½¬æ¢åçš„å€¼
  */
 uint16_t ff_convert (uint16_t src, uint32_t	dir)
 {
