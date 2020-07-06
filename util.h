@@ -10,42 +10,45 @@
 #include <stdint.h>
 #include <stdbool.h>
 
-#define swap16(x) ((x&0XFF)<<8|(x&0XFF00)>>8)		//¸ßµÍ×Ö½Ú½»»»ºê¶¨Òå
+#define swap16(x) ((x&0XFF)<<8|(x&0XFF00)>>8)		//é«˜ä½Žå­—èŠ‚äº¤æ¢å®å®šä¹‰
 
-// Ê®Áù½øÖÆÊý×ª×Ö·û£¬Àý£º0xA->'A'
+// åå…­è¿›åˆ¶æ•°è½¬å­—ç¬¦ï¼Œä¾‹ï¼š0xA->'A'
 uint8_t hex2chr(uint8_t hex);
 
-// ×Ö·û×ªÊ®Áù½øÖÆÊý£¬Àý£º'A'->0xA
+// å­—ç¬¦è½¬åå…­è¿›åˆ¶æ•°ï¼Œä¾‹ï¼š'A'->0xA
 uint8_t chr2hex(uint8_t chr);
 
-// unicodeÂë×ªgbk×Ö·û´®
+// unicodeç è½¬gbkå­—ç¬¦ä¸²
 void unicode2gbk(void*  gbk, const uint16_t* unicode, uint32_t num);
 
-// gbk×Ö·û´®×ªunicodeÂë
+// gbkå­—ç¬¦ä¸²è½¬unicodeç 
 void gbk2unicode(uint16_t*  unicode, const void* gbk);
 
-// unicodeÊ®Áù½øÖÆ×Ö·û´®×ªgbk×Ö·û´®
+// unicodeåå…­è¿›åˆ¶å­—ç¬¦ä¸²è½¬gbkå­—ç¬¦ä¸²
 void unistr2gbkstr(void* dst, const void* src);
 
-// gbk×Ö·û´®×ªunicodeÊ®Áù½øÖÆ×Ö·û´®
+// gbkå­—ç¬¦ä¸²è½¬unicodeåå…­è¿›åˆ¶å­—ç¬¦ä¸²
 void gbkstr2unistr(void* dst, const void* src);
 
-// Ð¡Ð´×ÖÄ¸×ª´óÐ´
+// å°å†™å­—æ¯è½¬å¤§å†™
 char lower2upper(char c);
 
-// ´óÐ´×ÖÄ¸×ªÐ¡Ð´
+// å¤§å†™å­—æ¯è½¬å°å†™
 char upper2lower(char c);
 
-// Ê®Áù½øÖÆÊý×ª×Ö·û´®£¬Àý£º0x12BC->"12BC"
+// åå…­è¿›åˆ¶æ•°è½¬å­—ç¬¦ä¸²ï¼Œä¾‹ï¼š0x12BC->"12BC"
 void hex2str(void* dst, int hex, bool isUpper);
 
-// Ê®½øÖÆÊý×ª×Ö·û´®£¬Àý£º132->"132"
+// åå…­è¿›åˆ¶å­—ç¬¦ä¸²è½¬æ•°å€¼ï¼Œä¾‹ï¼š"AABBCC" -> 0XAA,0XBB,0XCC
+void str2hex(const void* str, int len, uint8_t* hex);
+
+// åè¿›åˆ¶æ•°è½¬å­—ç¬¦ä¸²ï¼Œä¾‹ï¼š132->"132"
 void int2str(void* dst, int num);
 
-// ÕûÐÍÊý×ª¶þ½øÖÆ×Ö·û´®£¬Àý£º0xA->"1010"
+// æ•´åž‹æ•°è½¬äºŒè¿›åˆ¶å­—ç¬¦ä¸²ï¼Œä¾‹ï¼š0xA->"1010"
 void bin2str(void* dst, int bin);
 
-// ÕûÐÍÊý×ª°Ë½øÖÆ×Ö·û´®£¬Àý£º0x8->"11"
+// æ•´åž‹æ•°è½¬å…«è¿›åˆ¶å­—ç¬¦ä¸²ï¼Œä¾‹ï¼š0x8->"11"
 void oct2str(void* dst, int oct);
 
 #endif //UNIGBK_EXCHANGE_UTIL_H
